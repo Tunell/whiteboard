@@ -1,0 +1,8 @@
+C:\Users\Pelle\Dropbox\Skola\Stationära enheter c#\whiteboard\Whiteboard\bin\Debug\Whiteboard.exe
+C:\Users\Pelle\Dropbox\Skola\Stationära enheter c#\whiteboard\Whiteboard\bin\Debug\Whiteboard.pdb
+C:\Users\Pelle\Dropbox\Skola\Stationära enheter c#\whiteboard\Whiteboard\obj\x86\Debug\Whiteboard.Form1.resources
+C:\Users\Pelle\Dropbox\Skola\Stationära enheter c#\whiteboard\Whiteboard\obj\x86\Debug\Whiteboard.Properties.Resources.resources
+C:\Users\Pelle\Dropbox\Skola\Stationära enheter c#\whiteboard\Whiteboard\obj\x86\Debug\Whiteboard.csproj.GenerateResource.Cache
+C:\Users\Pelle\Dropbox\Skola\Stationära enheter c#\whiteboard\Whiteboard\obj\x86\Debug\Whiteboard.exe
+C:\Users\Pelle\Dropbox\Skola\Stationära enheter c#\whiteboard\Whiteboard\obj\x86\Debug\Whiteboard.pdb
+C:\Users\Pelle\Dropbox\Skola\Stationära enheter c#\whiteboard\Whiteboard\obj\x86\Debug\Whiteboard.csprojResolveAssemblyReference.cache
