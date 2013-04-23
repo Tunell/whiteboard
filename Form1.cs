@@ -6,14 +6,67 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Net.Sockets;
+using System.Threading;
+using System.Net;
 
 namespace Whiteboard
 {
     public partial class Form1 : Form
-    {
+    {          
+        public delegate void ShowMessage(string message);
+        public ShowMessage myDelegate;
+
+        UdpClient udpClient;
+        Thread thread;
         public Form1()
         {
             InitializeComponent();
+            string strHostName = System.Net.Dns.GetHostName();
+
+            IPHostEntry ipEntry = System.Net.Dns.GetHostEntry(strHostName);
+            string ip = "-";
+            foreach (IPAddress ipAddress in ipEntry.AddressList)
+            {
+                if (ipAddress.AddressFamily.ToString() == "InterNetwork")
+                {
+                    ip = ipAddress.ToString();
+                }
+            }
+            if (ip != "-")
+                myIpField.Text = ip;
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                thread.Abort();
+                udpClient.Close();
+                Close();
+            }
+        }
+
+        private void ReceiveMessage()
+        {
+            while (true)
+            {
+                Int32 otherPort = int.Parse(otherPortField.Text);
+                IPEndPoint remoteIPEndPoint = new IPEndPoint(IPAddress.Any, otherPort);
+                byte[] content = udpClient.Receive(ref remoteIPEndPoint);
+
+                if (content.Length > 0)
+                {
+                    string message = Encoding.ASCII.GetString(content);
+
+                    this.Invoke(myDelegate, new object[] { message });
+                }
+            }
+        }
+
+        private void ShowMessageMethod(string message)
+        {
+            toolStripStatusLabel2.Text = message;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -23,6 +76,7 @@ namespace Whiteboard
         private Bitmap bit = new Bitmap("C:/Users/Pelle/Dropbox/Skola/Stationära enheter c#/whiteboard/Whiteboard/Untitled.bmp");
         private Color col = Color.Black;
         private bool mouse_down = false;
+
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             mouse_down = true;
@@ -51,6 +105,44 @@ namespace Whiteboard
         {
             colorDialog1.ShowDialog();
             col = colorDialog1.Color;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            Int32 otherPort = int.Parse(otherPortField.Text);
+            IPAddress ip = IPAddress.Parse(otherIpField.Text.Trim());
+            IPEndPoint ipEndPoint = new IPEndPoint(ip, otherPort);
+            byte[] content = Encoding.ASCII.GetBytes(messageBox.Text);
+            try
+            {
+                int count = udpClient.Send(content, content.Length, ipEndPoint);
+                if (count > 0)
+                {
+                    toolStripStatusLabel2.Text = "Message has been sent.";
+                }
+
+            }
+            catch
+            {
+
+                toolStripStatusLabel2.Text = "Error sending message.";
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("asd");
+            udpClient = new UdpClient(int.Parse(myPortField.Text));
+            myDelegate = new ShowMessage(ShowMessageMethod);
+            thread = new Thread(new ThreadStart(ReceiveMessage));
+            thread.IsBackground = true;
+            thread.Start();
+
         }
     }
 }
