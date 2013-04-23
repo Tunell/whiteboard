@@ -32,7 +32,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.colorButton = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,11 +40,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.otherPortField = new System.Windows.Forms.TextBox();
             this.otherIpField = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.connectButton = new System.Windows.Forms.Button();
             this.myPortField = new System.Windows.Forms.TextBox();
             this.myIpField = new System.Windows.Forms.TextBox();
             this.messageBox = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,20 +83,20 @@
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
             // 
-            // button1
+            // colorButton
             // 
-            this.button1.Location = new System.Drawing.Point(105, 243);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Color";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.colorButton.Location = new System.Drawing.Point(15, 242);
+            this.colorButton.Name = "colorButton";
+            this.colorButton.Size = new System.Drawing.Size(112, 23);
+            this.colorButton.TabIndex = 2;
+            this.colorButton.Text = "Select Color";
+            this.colorButton.UseVisualStyleBackColor = true;
+            this.colorButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 275);
+            this.label1.Location = new System.Drawing.Point(23, 274);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 13);
             this.label1.TabIndex = 3;
@@ -104,7 +105,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 327);
+            this.label2.Location = new System.Drawing.Point(9, 335);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 13);
             this.label2.TabIndex = 4;
@@ -113,7 +114,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 353);
+            this.label3.Location = new System.Drawing.Point(17, 360);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 5;
@@ -122,7 +123,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 301);
+            this.label4.Location = new System.Drawing.Point(32, 299);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 6;
@@ -130,77 +131,86 @@
             // 
             // otherPortField
             // 
-            this.otherPortField.Location = new System.Drawing.Point(75, 325);
+            this.otherPortField.Location = new System.Drawing.Point(75, 332);
             this.otherPortField.Name = "otherPortField";
             this.otherPortField.Size = new System.Drawing.Size(51, 20);
             this.otherPortField.TabIndex = 7;
             // 
             // otherIpField
             // 
-            this.otherIpField.Location = new System.Drawing.Point(75, 350);
+            this.otherIpField.Location = new System.Drawing.Point(75, 357);
             this.otherIpField.Name = "otherIpField";
             this.otherIpField.Size = new System.Drawing.Size(197, 20);
             this.otherIpField.TabIndex = 8;
             // 
-            // button2
+            // connectButton
             // 
-            this.button2.Location = new System.Drawing.Point(196, 377);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Connect";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.connectButton.Location = new System.Drawing.Point(161, 242);
+            this.connectButton.Name = "connectButton";
+            this.connectButton.Size = new System.Drawing.Size(111, 23);
+            this.connectButton.TabIndex = 9;
+            this.connectButton.Text = "Connect";
+            this.connectButton.UseVisualStyleBackColor = true;
+            this.connectButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // myPortField
             // 
-            this.myPortField.Location = new System.Drawing.Point(75, 272);
+            this.myPortField.Location = new System.Drawing.Point(75, 271);
             this.myPortField.Name = "myPortField";
             this.myPortField.Size = new System.Drawing.Size(52, 20);
             this.myPortField.TabIndex = 10;
             // 
             // myIpField
             // 
-            this.myIpField.Enabled = false;
-            this.myIpField.Location = new System.Drawing.Point(75, 300);
+            this.myIpField.Location = new System.Drawing.Point(75, 299);
             this.myIpField.Name = "myIpField";
             this.myIpField.Size = new System.Drawing.Size(197, 20);
             this.myIpField.TabIndex = 11;
             // 
             // messageBox
             // 
-            this.messageBox.Location = new System.Drawing.Point(75, 422);
+            this.messageBox.Location = new System.Drawing.Point(75, 392);
             this.messageBox.Name = "messageBox";
             this.messageBox.Size = new System.Drawing.Size(197, 20);
             this.messageBox.TabIndex = 12;
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(105, 377);
+            this.btnSend.Location = new System.Drawing.Point(161, 416);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 23);
+            this.btnSend.Size = new System.Drawing.Size(111, 23);
             this.btnSend.TabIndex = 13;
-            this.btnSend.Text = "btnSend";
+            this.btnSend.Text = "Send Message";
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 395);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Message:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(298, 467);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.connectButton);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.messageBox);
             this.Controls.Add(this.myIpField);
             this.Controls.Add(this.myPortField);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.otherIpField);
             this.Controls.Add(this.otherPortField);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.colorButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
             this.Name = "Form1";
@@ -217,7 +227,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button colorButton;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -225,12 +235,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox otherPortField;
         private System.Windows.Forms.TextBox otherIpField;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button connectButton;
         private System.Windows.Forms.TextBox myPortField;
         private System.Windows.Forms.TextBox myIpField;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.TextBox messageBox;
         private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.Label label5;
     }
 }
 

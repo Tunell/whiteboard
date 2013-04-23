@@ -58,7 +58,6 @@ namespace Whiteboard
                 if (content.Length > 0)
                 {
                     string message = Encoding.ASCII.GetString(content);
-
                     this.Invoke(myDelegate, new object[] { message });
                 }
             }
@@ -67,6 +66,23 @@ namespace Whiteboard
         private void ShowMessageMethod(string message)
         {
             toolStripStatusLabel2.Text = message;
+            try{
+                int xAxis = int.Parse(message.Substring(0, message.IndexOf(",")));
+                int yAxis = int.Parse(message.Substring(message.IndexOf(',') + 1));
+                /*string colString = message.Substring(message.LastIndexOf(',') + 1);
+                ColorConverter converter = new ColorConverter();
+
+                Color col = (Color)converter.ConvertFromString(colString);
+
+                toolStripStatusLabel2.Text = "The coordinates= '" + xAxis + "' ,yaxis= ;"+ yAxis+";"+ col;
+                */
+                bit = new Bitmap(bit, panel1.Size);
+                panel1.BackgroundImage = bit;
+                bit.SetPixel(xAxis, yAxis, col);
+
+            }catch{
+                toolStripStatusLabel2.Text = message;
+            }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -97,6 +113,23 @@ namespace Whiteboard
                     bit = new Bitmap(bit, panel1.Size);
                     panel1.BackgroundImage = bit;
                     bit.SetPixel(e.X, e.Y, col);
+
+                    Int32 otherPort = int.Parse(otherPortField.Text);
+                    IPAddress ip = IPAddress.Parse(otherIpField.Text.Trim());
+                    IPEndPoint ipEndPoint = new IPEndPoint(ip, otherPort);
+                    byte[] content = Encoding.ASCII.GetBytes(toolStripStatusLabel1.Text);
+                    try
+                    {
+                        int count = udpClient.Send(content, content.Length, ipEndPoint);
+                        if (count > 0)
+                        {
+                            toolStripStatusLabel2.Text = "Sending cordinates.";
+                        }
+                    }
+                    catch
+                    {
+                        toolStripStatusLabel2.Text = "Error sending cordinates.";
+                    }
                 }
             }
         }
@@ -105,11 +138,6 @@ namespace Whiteboard
         {
             colorDialog1.ShowDialog();
             col = colorDialog1.Color;
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -125,18 +153,15 @@ namespace Whiteboard
                 {
                     toolStripStatusLabel2.Text = "Message has been sent.";
                 }
-
             }
             catch
             {
-
                 toolStripStatusLabel2.Text = "Error sending message.";
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("asd");
             udpClient = new UdpClient(int.Parse(myPortField.Text));
             myDelegate = new ShowMessage(ShowMessageMethod);
             thread = new Thread(new ThreadStart(ReceiveMessage));
